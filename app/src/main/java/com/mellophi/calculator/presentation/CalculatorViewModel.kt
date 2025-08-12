@@ -25,7 +25,6 @@ class CalculatorViewModel @Inject constructor(
         private set
 
     fun checkAndUpdateExpression(text: String) {
-        val updatedString: String
         try {
             when (text) {
                 "AC" -> {

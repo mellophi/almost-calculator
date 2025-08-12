@@ -50,4 +50,7 @@ google-services.json
 *.hprof
 
 #Icons
-icons/
+icons
+
+#gradle
+gradle
