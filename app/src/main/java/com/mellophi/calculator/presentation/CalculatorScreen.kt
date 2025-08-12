@@ -37,18 +37,17 @@ fun CalculatorApp(
 
     // The entire app is wrapped in our custom theme
     CalculatorTheme(darkTheme = isDark) {
-        MainScreen(viewModel = viewModel)
+        MainScreen(isDark = isDark, viewModel = viewModel)
     }
 }
 
 
 @Composable
 fun MainScreen(
+    isDark: Boolean,
     viewModel: CalculatorViewModel,
     modifier: Modifier = Modifier
 ) {
-    val isDark by viewModel.themeToggle
-
     // SunAnimationScreen now correctly uses the theme's background color
     SunAnimationScreen(isDark = isDark) {
         // The main Surface is now transparent to show the animated background

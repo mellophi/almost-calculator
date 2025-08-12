@@ -7,6 +7,7 @@ class EvaluateExpressionUseCase {
         var current = 0f
         var lastComputedSum = 0f
         var lastComputedProduct = 1f
+        var openParenthesis = 0
         expression.forEachIndexed { index, c ->
             when (c) {
                 in listOf('+', '-') -> {
@@ -39,7 +40,8 @@ class EvaluateExpressionUseCase {
                 }
 
                 '(' -> {
-                    if(index - 1 >= 0 && expression[index - 1] !in listOf('+', '-', '*', '/')) {
+                    openParenthesis++
+                    if(index - 1 >= 0 && expression[index - 1].isDigit()) {
                         // need to do product
                         when(lastOp) {
                             '+' -> lastComputedProduct = current
@@ -59,6 +61,7 @@ class EvaluateExpressionUseCase {
                 }
 
                 ')' -> {
+                    openParenthesis--
                     when (lastOp) {
                         '+' -> lastComputedSum += current
                         '-' -> lastComputedSum -= current
@@ -103,6 +106,10 @@ class EvaluateExpressionUseCase {
                 lastComputedProduct /= current
                 lastComputedSum += lastComputedProduct
             }
+        }
+
+        if(openParenthesis != 0) {
+            throw IllegalStateException("invalid expression!")
         }
 
         return lastComputedSum.toString()
