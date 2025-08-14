@@ -41,7 +41,7 @@ class EvaluateExpressionUseCase {
 
                 '(' -> {
                     openParenthesis++
-                    if(index - 1 >= 0 && expression[index - 1].isDigit()) {
+                    if(index - 1 >= 0 && (expression[index - 1].isDigit() || expression[index - 1] == ')')) {
                         // need to do product
                         when(lastOp) {
                             '+' -> lastComputedProduct = current

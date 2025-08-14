@@ -29,6 +29,7 @@ class CalculatorUnitTest {
         assertEquals("4.0", evaluateExpressionUseCase("(1 + 2 )+1"))
         assertEquals("8.0", evaluateExpressionUseCase("2/2(1+1)(2(2))"))
         assertEquals("9.0",evaluateExpressionUseCase("((9))"))
+        assertEquals("81.0", evaluateExpressionUseCase("((9))(((9)))"))
     }
 
 
